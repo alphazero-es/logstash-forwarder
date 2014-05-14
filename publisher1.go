@@ -195,7 +195,7 @@ func connect(config *NetworkConfig) (socket *tls.Conn) {
       continue
     }
 
-    tlsconfig.ServerName = host
+    tlsconfig.ServerName = host  // pull #205 -Go 1.3 tls change -backwards compatible
 
     socket = tls.Client(tcpsocket, &tlsconfig)
     socket.SetDeadline(time.Now().Add(config.timeout))
